@@ -1,0 +1,207 @@
+<div class="row">
+    <div class="col-lg-12">
+		<div class="well" style="padding: 20px;">
+			<%= form_for @accomodation, :html => { :multipart => true, class: "form-horizontal" } do |f| %>
+				<%= token_tag %>
+
+				<fieldset>
+		            <h2>Date personale</h2>
+		            <br>
+					<div class="form-group">
+		                <label class="col-lg-2">Nume</label>
+						<div class="col-lg-10">
+							<%= @current_user.last_name %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Prenume</label>
+						<div class="col-lg-10">
+							<%= @current_user.first_name %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Prenume tata</label>
+						<div class="col-lg-10">
+							<%= @current_user.father_first_name %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Prenume mama</label>
+						<div class="col-lg-10">
+							<%= @current_user.mother_first_name %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Adresa</label>
+						<div class="col-lg-10">
+							<%= @current_user.address %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Data nasterii</label>
+						<div class="col-lg-10">
+							<%= @current_user.date_birth %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">Locul nasterii</label>
+						<div class="col-lg-10">
+							<%= @current_user.place_birth %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">BI/CI Serie</label>
+						<div class="col-lg-10">
+							<%= @current_user.ic_serie %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">BI/CI Numar</label>
+						<div class="col-lg-10">
+							<%= @current_user.ic_number %>
+						</div>
+					</div>
+
+		            <div class="form-group">
+		                <label class="col-lg-2">CNP</label>
+						<div class="col-lg-10">
+							<%= @current_user.cnp %>
+						</div>
+					</div>
+					
+		            <br>
+	            	<h2>Upload studii si fisiere</h2>
+		            <br>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Facultate</label>
+						<div class="col-lg-10">
+							Matematica-Informatica
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Sectie</label>
+						<div class="col-lg-10">
+							<%= @current_user.specialization %>
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">An</label>
+						<div class="col-lg-10">
+							<%= @current_user.year %>
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Upload fisiere</label>
+						<div class="col-lg-10">
+							<%= file_field_tag 'documents[]', multiple: true %>
+						</div>
+					</div>
+
+					<br>
+					<h2>Date cazare</h2>
+		            <br>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Anul trecut am domiciliat in caminul</label>
+						<div class="col-lg-10">
+							<select class="form-control" name="last_dorm">
+								<option value=""></option>
+								<% @dorms.each do |dorm| %>
+									<option value="<%= dorm.id %>" <%= (@current_user.last_dorm == dorm.id) ? 'selected' : '' %>><%= dorm.name %></option>
+								<% end %>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Camera</label>
+						<div class="col-lg-10">
+							<input class="form-control" type="text" name="last_room" value="<% @current_user.last_room %>">
+						</div>
+					</div>
+				
+					<div class="form-group">
+		                <label class="col-lg-2">Rog comisia sa tina cont de</label>
+						<div class="col-lg-10">
+							<div class="checkbox">
+								<label><input type="checkbox" name="is_continuity">continuitate</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" name="is_social">situatie sociala</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Preferinte camin 1</label>
+						<div class="col-lg-10">
+							<select class="form-control" name="dorm_pref_1">
+								<option value=""></option>
+								<% @dorms.each do |dorm| %>
+									<option value="<%= dorm.id %>"><%= dorm.name %></option>
+								<% end %>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+		                <label class="col-lg-2">Preferinte camin 2</label>
+						<div class="col-lg-10">
+							<select class="form-control" name="dorm_pref_2">
+								<option value=""></option>
+								<% @dorms.each do |dorm| %>
+									<option value="<%= dorm.id %>"><%= dorm.name %></option>
+								<% end %>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+		                <label class="col-lg-2">Preferinte camin 3</label>
+						<div class="col-lg-10">
+							<select class="form-control" name="dorm_pref_3">
+								<option value=""></option>
+								<% @dorms.each do |dorm| %>
+									<option value="<%= dorm.id %>"><%= dorm.name %></option>
+								<% end %>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+		                <label class="col-lg-2">Preferinta coleg</label>
+						<div class="col-lg-10">
+							<input class="form-control" type="text" name="roommate_pref" placeholder="Numele colegului">
+						</div>
+					</div>
+					
+					<br>
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<button class="btn btn-success" name="sent" type="submit">Depune</button>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+							<button class="btn btn-success" name="saved" type="submit">Salveaza</button>
+						</div>
+					</div>
+				
+				</fieldset>
+			<% end %>
+		</div>
+	</div>
+</div>
